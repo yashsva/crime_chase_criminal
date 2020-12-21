@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('../includes/head.ejs')%>
+  </head>
+  <header><%-include('../includes/navigation.ejs')%></header>
+
+  <body>
+    <div>
+      <a href="/crime/add_crime">Add Crimes</a>
+    </div>
+    <%-include('../includes/search_bar.ejs')%>
+
+    <div>
+      <h3><%=page_title %></h3>
+      <% if(crimes.length> 0) { %> <% crimes.forEach(c=>{ %>
+      <div>
+        <span> <%=c.id %> </span>
+        <span> <%=c.date%> </span>
+        <span> <%=c.city%> </span>
+        <a href="/crime/crime_detail/<%=c.id%>">More Info</a>
+      </div>
+      <% }) %> <% } %>
+    </div>
+  </body>
+</html>

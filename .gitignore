@@ -1,0 +1,5 @@
+.env
+node_modules
+.vscode
+public/images/criminals/*.jpg
+public/images/polices/*.jpg

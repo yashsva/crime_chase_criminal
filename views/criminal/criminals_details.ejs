@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+
+</header>
+
+<body>
+    <div>
+        <a href="/criminal/add_criminal">Add Criminal Info</a>
+    </div>
+    <%-include('../includes/search_bar.ejs')%>
+
+
+    <div>
+        <h3><%=page_title %></h2>
+        <% if(criminals.length > 0) { %>
+        <% criminals.forEach(c =>{ %>
+        <div>
+            <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo">
+            <span><%=c.name%></span>
+            <span><%=c.id %></span>
+            <span><%=c.city %></span>
+            <a href="/criminal/criminal_detail/<%=c.id%>">More Info</a>
+        </div>
+        <% }) %>
+        <% } %>
+    </div>
+</body>
+
+</html>

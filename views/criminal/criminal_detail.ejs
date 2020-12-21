@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+
+</header>
+
+<body>
+    <div>
+        <b>Photo:</b>
+        <img src="/images/criminals/<%=criminal.photo_filename%>" alt="criminal photo">
+    </div>
+    <div>
+        <b>ID:</b>
+        <span><%=criminal.id%></span>
+    </div>
+    <div>
+        <b>Name:</b>
+        <span><%=criminal.name%></span>
+    </div>
+    <div>
+        <b>Gender:</b>
+        <span><%=criminal.gender%></span>
+    </div>
+    <div>
+        <b>Height:</b>
+        <span><%=criminal.height%></span>
+    </div>
+    <div>
+        <b>Weight:</b>
+        <span><%=criminal.weight%></span>
+    </div>
+    <div>
+        <b>DOB:</b>
+        <span><%=criminal.dob%></span>
+    </div>
+    <div>
+        <b>City:</b>
+        <span><%=criminal.city%></span>
+    </div>
+    <div>
+        <a href="/criminal/edit_criminal_detail/<%=criminal.id%>">Edit</a>
+        <a href="/criminal/delete_criminal/<%=criminal.id%>">Delete</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+.header_nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.nav_logo{
+    list-style: none;
+    display: flex;
+}
+.nav_list {
+    list-style: none;
+    display: flex;
+}
+
+.nav_list-item {
+    margin: 0 20px;
+}
+
+.nav_list-item a {
+    font: inherit;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+.nav_list-item a:hover,
+.nav_list-item a:active,
+.nav_list-item a.active{
+    color: rgb(252, 115, 35);
+}

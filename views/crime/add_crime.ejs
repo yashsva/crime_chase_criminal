@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+    <script src="/javascripts/crime/add_crime.js"></script>
+</header>
+
+<body>
+    <div><%=error_msg%></div>
+    <form action="/crime/<% if(isEditing) { %>edit_crime/<%=crime.id%><% } else { %>add_crime <% } %>" method="POST"
+        enctype="multipart/form-data">
+        <div>
+            <div>
+                <label for="date">date:</label>
+                <input type="date" name="date" id="date" value="<% if(isEditing) { %><%=crime.date%><% } %>" required />
+            </div>
+            <div>
+                <label for="city">city:</label>
+                <input type="text" name="city" id="city" value="<% if(isEditing) { %><%=crime.city%><% } %>" required />
+            </div>
+            <div>
+                <span>Crime Type :</span>
+                <% crime_types.forEach(ct=>{ %>
+                <span>
+                    <input type="checkbox" name="crime_types" value="<%= ct.id %>"
+                        <%=(ct.isSelected) ? 'checked' : '' %>>
+                    <label for="crime_types"><%= ct.type_name %></label>
+                </span>
+                <% }) %>
+            </div>
+            <div>
+                <label for="criminals_ids">Criminals:</label>
+                <div id="criminalIDs_input_div">
+                    <% if(isEditing) { criminals.forEach(c=>{ %>
+                    <div>
+                        <label for="criminal_id">ID :</label>
+                        <input type="text" name="criminal_id" id="criminal_id" placeholder="Enter Criminal ID"
+                            value="<%=c.id%>" />
+                        <button onclick="remove_criminalID_input(this)" class="remove_criminalID_input">Remove</button>
+                    </div>
+                    <% }) %>
+                    <% } %>
+                    <div>
+                        <label for="criminal_id">ID :</label>
+                        <input type="text" name="criminal_id" id="criminal_id" placeholder="Enter Criminal ID" />
+                        <button onclick="remove_criminalID_input(this)" class="remove_criminalID_input">Remove</button>
+                    </div>
+                </div>
+                <button type="button" id="add_criminalID_field" onclick="add_criminalID_input(this)">Add Criminal</button>
+            </div>
+            <div>
+                <label for="description">description:</label>
+                <textarea name="description" id="description" cols="100" rows="3"
+                    required><% if(isEditing) { %><%=crime.description%><% } %></textarea>
+            </div>
+
+            <% if(isEditing) { %>
+            <button type="submit">Update</button>
+            <% } else { %>
+            <button type="submit">Submit</button>
+            <% } %>
+        </div>
+    </form>
+</body>
+
+</html>

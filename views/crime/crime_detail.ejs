@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+
+</header>
+
+<body>
+    <div>
+        <b>ID:</b>
+        <span><%=crime.id%></span>
+    </div>
+
+    <div>
+        <b>Date:</b>
+        <span><%=crime.date%></span>
+    </div>
+    <div>
+        <b>City:</b>
+        <span><%=crime.city%></span>
+    </div>
+    <div>
+        <b>Crime Type:</b>
+        <% crime.crime_type_names.forEach(name=>{ %>
+
+        <span><%=name%>, </span>
+        <%})%>
+    </div>
+    <% if(criminals.length > 0) { %>
+        <b>Criminals:</b>
+    <% criminals.forEach(c =>{ %>
+    <div>
+        <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo">
+        <span><%=c.name%></span>
+        <span><%=c.id %></span>
+        <span><%=c.city %></span>
+        <a href="/criminal/criminal_detail/<%=c.id%>">More Info</a>
+    </div>
+    <% }) %>
+    <% } %>
+    <div>
+        <b>Description:</b>
+        <span><%=crime.description%></span>
+    </div>
+    <div>
+        <a href="/crime/edit_crime/<%=crime.id%>">Edit</a>
+        <a href="/crime/delete_crime/<%=crime.id%>">Delete</a>
+    </div>
+</body>
+
+</html>

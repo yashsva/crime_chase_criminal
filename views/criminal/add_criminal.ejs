@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+
+</header>
+
+<body>
+    <div><%=error_msg%></div>
+    <form
+        action="/criminal/<% if(isEditing) { %>edit_criminal_detail/<%=criminal.id%><% } else { %>add_criminal <% } %>"
+        method="POST" enctype="multipart/form-data">
+        <div>
+            <div>
+                <label for="name">name</label>
+                <input type="text" name="name" id="name" value="<% if(isEditing) { %><%=criminal.name%><% } %>">
+            </div>
+            <div>
+                <label for="dob">dob</label>
+                <input type="date" name="dob" id="dob" value="<% if(isEditing) { %><%=criminal.dob%><% } %>">
+            </div>
+            <div>
+                <label for="height">height</label>
+                <input type="number" name="height" id="height" value="<% if(isEditing) { %><%=criminal.height%><% } %>">
+            </div>
+            <div>
+                <label for="weight">weight</label>
+                <input type="number" name="weight" id="weight" value="<% if(isEditing) { %><%=criminal.weight%><% } %>">
+            </div>
+            <div>
+                <label for="city">city</label>
+                <input type="text" name="city" id="city" value="<% if(isEditing) { %><%=criminal.city%><% } %>">
+            </div>
+            <div>
+                <input type="radio" name="gender" id="male" value="male"
+                    <%= (isEditing && criminal.gender==='male')?'checked':'' %>>
+                <label for="male">male</label>
+                <input type="radio" name="gender" id="female" value="female"
+                    <%= (isEditing && criminal.gender==='female')?'checked':'' %>>
+                <label for="female">female</label>
+
+            </div>
+            <div>
+                <label for="criminal_photo">photo</label>
+                <% if(isEditing){ %>
+                <img src="/images/criminals/<%=criminal.photo_filename%>" alt="criminal photo">
+                <input type="hidden" name="old_criminal_photo" id="old_criminal_photo"
+                    value="<%if(isEditing) { %><%=criminal.photo_filename%><% } %>">
+                <% } %>
+                <input type="file" name="criminal_photo" id="criminal_photo"
+                    value="<%if(isEditing) { %><%=criminal.photo_filename%><% } %>">
+            </div>
+            <% if(isEditing) { %>
+            <button type="submit">Update</button>
+            <% } else { %>
+            <button type="submit">Submit</button>
+            <% } %>
+        </div>
+    </form>
+</body>
+
+</html>

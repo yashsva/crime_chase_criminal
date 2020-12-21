@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('../includes/head.ejs')%>
+</head>
+<header>
+    <%-include('../includes/navigation.ejs')%>
+
+</header>
+
+<body>
+    <div>
+        <b>Photo:</b>
+        <img src="/images/polices/<%=personnel.photo_filename%>" alt="police photo">
+    </div>
+    <div>
+        <b>ID:</b>
+        <span><%=personnel.id%></span>
+    </div>
+    <div>
+        <b>Name:</b>
+        <span><%=personnel.name%></span>
+    </div>
+    <div>
+        <b>Department:</b>
+        <span><%=personnel.department%></span>
+    </div>
+    <div>
+        <b>Phone:</b>
+        <span><%=personnel.phone%></span>
+    </div>
+    <div>
+        <b>email:</b>
+        <span><%=personnel.email%></span>
+    </div>
+    <div>
+        <b>DOB:</b>
+        <span><%=personnel.dob%></span>
+    </div>
+    <div>
+        <b>Password:</b>
+        <span><%=personnel.password%></span>
+    </div>
+    <div>
+        <b>Gender:</b>
+        <span><%=personnel.gender%></span>
+    </div>
+    <div>
+        <a href="/admin/edit_police_personnel_info/<%=personnel.id%>">Edit</a>
+        <a href="/admin/delete_police_personnel_by_id/<%=personnel.id%>">Delete</a>
+    </div>
+</body>
+
+</html>
