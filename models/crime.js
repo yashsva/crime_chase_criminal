@@ -113,6 +113,10 @@ class Crime_criminal{
         return db.execute('SELECT  name,photo_filename,id,city FROM criminal JOIN crime_criminal cc ON cc.criminal_id=criminal.id WHERE cc.crime_id=?',[crimeId])
     }
 
+    static getAllCrimesByCriminalID(criminalId){
+        return db.execute('SELECT  id,date,city FROM crime JOIN crime_criminal cc ON cc.crime_id=crime.id WHERE cc.criminal_id=?',[criminalId]);
+    }
+
     static deleteAllRecordsByCrimeID(crimeId){
         return db.execute('DELETE FROM crime_criminal WHERE crime_id=?',[crimeId]);
     }

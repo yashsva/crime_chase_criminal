@@ -1,4 +1,8 @@
 const Criminal = require('../models/criminal');
+const crimeModel = require('../models/crime');
+
+const Crime_criminal = crimeModel.Crime_criminal;
+
 
 const file_handling = require('../utils/file_handling');
 const date_convertor = require('../utils/date_convertor');
@@ -15,15 +19,22 @@ exports.get_criminals_details = (req, res, next) => {
 
 exports.get_criminal_detail_by_id = (req, res, next) => {
     const id = req.params.id;
-    Criminal.getCriminalById(id).then(([data, others]) => {
+    var crimes=[];
+    Crime_criminal.getAllCrimesByCriminalID(id).then(([data,others])=>{
+        crimes=data;
+        return Criminal.getCriminalById(id);
+    })
+    .then(([data, others]) => {
         // console.log(data);
         res.render('criminal/criminal_detail', {
             page_title: 'Criminal detail',
             path: '/criminal/criminal_detail',
-            criminal: data[0]
+            criminal: data[0],
+            crimes:crimes
         });
     }).catch(err => {
         console.log(err);
+        res.redirect('/criminal/criminals_details')
     })
 }
 

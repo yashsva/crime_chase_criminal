@@ -43,6 +43,18 @@
         <span><%=criminal.city%></span>
     </div>
     <div>
+        <% if(crimes.length> 0) { %>
+        <b>Crimes:</b>
+        <% crimes.forEach(c=>{ %>
+        <div>
+            <span> <%=c.id %> </span>
+            <span> <%=c.date%> </span>
+            <span> <%=c.city%> </span>
+            <a href="/crime/crime_detail/<%=c.id%>">More Info</a>
+        </div>
+    </div>
+    <% }) %> <% } %>
+    <div>
         <a href="/criminal/edit_criminal_detail/<%=criminal.id%>">Edit</a>
         <a href="/criminal/delete_criminal/<%=criminal.id%>">Delete</a>
     </div>
