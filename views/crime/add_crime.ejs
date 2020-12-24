@@ -16,15 +16,15 @@
         enctype="multipart/form-data">
         <div>
             <div>
-                <label for="date">date:</label>
-                <input type="date" name="date" id="date" value="<% if(isEditing) { %><%=crime.date%><% } %>" required />
+                <label class="name" for="date">date:</label>
+                <input class="date" type="date" name="date" id="date" value="<% if(isEditing) { %><%=crime.date%><% } %>" required />
             </div>
             <div>
-                <label for="city">city:</label>
-                <input type="text" name="city" id="city" value="<% if(isEditing) { %><%=crime.city%><% } %>" required />
+                <label class="name" for="city">city:</label>
+                <input class="place"type="text" name="city" id="city" value="<% if(isEditing) { %><%=crime.city%><% } %>" required />
             </div>
             <div>
-                <span>Crime Type :</span>
+                <span class="name">Crime Type :</span>
                 <% crime_types.forEach(ct=>{ %>
                 <span>
                     <input type="checkbox" name="crime_types" value="<%= ct.id %>"
@@ -34,7 +34,7 @@
                 <% }) %>
             </div>
             <div>
-                <label for="criminals_ids">Criminals:</label>
+                <label  class="name" for="criminals_ids">Criminals:</label>
                 <div id="criminalIDs_input_div">
                     <% if(isEditing) { criminals.forEach(c=>{ %>
                     <div>
@@ -54,8 +54,8 @@
                 <button type="button" id="add_criminalID_field" onclick="add_criminalID_input(this)">Add Criminal</button>
             </div>
             <div>
-                <label for="description">description:</label>
-                <textarea name="description" id="description" cols="100" rows="3"
+                <label class="name" for="description">description:</label>
+                <textarea  class="description" name="description" id="description" cols="100" rows="3"
                     required><% if(isEditing) { %><%=crime.description%><% } %></textarea>
             </div>
 
