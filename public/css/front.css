@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+*{
+	padding: 0;
+	margin: 0;
+}
+.wrapper{
+	border: 2px solid black;
+	padding :25px;
+    background:linear-gradient(rgba(0,0,1,0.2),rgba(0,0,0,0.2)) ,url('../img/crime.jpg');
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+	height: 95vh;
+}
+.navbar{
+	height: 80px;
+	width: 100%;
+	/* background: rgba(0,0,0,0.4); */
+}
+.logo{
+	width: 140px;
+	height: auto;
+	padding: 20px 100px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+
+}
+.navbar ul li a{
+	text-decoration: none;
+	color: white;
+	font-size: 20px;
+	padding: 6px 13px;
+	transition: 4s;
+}
+.navbar ul li a.active
+{
+	background: red;
+	border-radius: 2px;
+}
+.wrapper .center{
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	transform: translate(-50%, -50%);
+	user-select: none;
+}
+.center h6{
+	color: white;
+	font-size: 33px;
+	font-weight: bold;
+	width: 900px;
+	text-align: center;
+
+}
+.center h2{
+	color: white;
+	font-size: 70px;
+	font-weight: bold;
+	width: 885px;
+	margin-top: 10px;
+	text-align: center;
+
+}

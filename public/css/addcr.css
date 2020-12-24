@@ -1,0 +1,181 @@
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+background-color: HoneyDew;
+background-size: cover;
+font-family: sans-serif;
+margin-top: 40px;
+}
+.regform{
+height: 90px;
+width: 800px;
+background-color: Orange;
+margin: auto;
+color:MidnightBlue;
+padding:10px 0px 10px 0px;
+text-align: center;
+font-size: 30px;
+border-radius: 15px 15px 0px 0px;
+}
+.main{
+background-color: rgb(0,0,0,0.8);
+width:800px;
+height:1215px;
+margin: auto;
+}
+form{
+padding: 10px;
+}
+#name{
+width: 100%;
+height: 100px;
+}
+.name{
+     margin-left: 25px;
+     margin-top: 30px;
+     width: 125px;
+     color: LightGray;
+     font-size: 28px;
+     font-weight:  40px;
+}
+
+.firstname{
+       position: relative;
+       left: 200px;
+       top: -47px;
+       line-height: 46px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+       border-color: #2ecc71;
+}
+.firstname.success{
+       border-color: #2ecc71;
+}
+.Photo{
+       position: relative;
+       left: 200px;
+       top: -47px;
+       line-height: 46px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 24px;
+
+}
+.submit{
+       position: relative;
+       left: 200px;
+       top: -47px;
+       line-height: 46px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+
+}
+
+.id{
+ position: relative;
+ left: 200px;
+ top:-47px;
+ line-height: 46px;
+ width: 332px;
+ border-radius: 6px;
+ padding: 0 22px;
+ font-size: 16px;
+ color: #555; 
+}
+.crimetype{
+          position: relative;
+          left: 200px;
+          top:-47px;
+          line-height: 46px;
+         width: 376px;
+          border-radius: 6px;
+          padding: 11px 22px;
+          font-size: 16px;
+         color: #555; 
+}
+.height{
+     position: relative;
+      left: 200px;
+      top:-47px;
+      line-height: 46px;
+      width: 332px;
+      border-radius: 6px;
+      padding: 0 22px;
+      font-size: 16px;
+      color: #555; 
+}
+.weight{
+          position: relative;
+   left: 200px;
+   top:-47px;
+   line-height: 46px;
+   width: 332px;
+   border-radius: 6px;
+   padding: 0 22px;
+   font-size: 16px;
+   color: #555; 
+}
+.dob{
+      position: relative;
+      left: 200px;
+      top: -47px;
+      width: 332px;
+      line-height: 46px;
+      border-radius: 6px;
+      padding:  0 22px;
+      font-size: 16px;
+      background-color: white;
+}
+
+
+.place{
+           position: relative;
+           left: 200px;
+           top:-47px;                 
+          line-height: 50px;
+          width: 332px;
+          border-radius: 6px;
+          padding: 0 22px;
+          font-size: 16px;
+          color: #555; 
+}
+.gender{
+       position: relative;
+        left: 118px;
+        top:-47px;                 
+       line-height: 46px;
+       width: 187px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+       color: white;
+}
+
+button{
+         background-color: #3BAF9F;
+         display:block;
+         position: right;
+         margin:20px 0px 0px 20px;
+         text-align: center;
+         border-radius: 12px;
+         border: 2px solid #366473;
+         padding: 14px 110px;
+         outline: none;
+         color: white;
+         cursor: pointer;
+         transition: 0.25px;
+}
+#myForm small{
+       visibility: hidden;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+}
+
