@@ -1,0 +1,146 @@
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+background-color: HoneyDew;
+background-size: cover;
+font-family: sans-serif;
+margin-top: 40px;
+
+}
+.name{
+    margin-left: 25px;
+    margin-top: 30px;
+    width: 125px;
+    color: LightGray;
+    font-size: 28px;
+    font-weight:  40px;
+}
+.regform{
+height: 90px;
+width: 800px;
+background-color: tomato;
+margin: auto;
+color: indigo;
+padding:10px 0px 10px 0px;
+text-align: center;
+font-size: 30px;
+border-radius: 15px 15px 0px 0px;
+}
+.main{
+background-color: rgb(0,0,0,0.8);
+width:800px;
+height:900px;
+margin: auto;
+}
+form{
+padding: 10px;
+}
+.select{
+    position: relative;
+    line-height: 46px;
+    color: #333333;
+	background-color: #eeeeee;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+    width: 332px;
+    border-radius: 6px;
+    padding: 12px 22px;
+    font-size: 16px;
+    color: #555; 
+}
+
+.select1{
+    position: relative;
+    line-height: 46px;
+    color: #333333;
+	background-color: #eeeeee;
+	border: 1px solid #dddddd;
+	cursor: pointer;
+    width: 332px;
+    border-radius: 6px;
+    padding: 12px 22px;
+    font-size: 16px;
+    color: #555; 
+}
+
+.date{
+    position: relative;
+    left: 200px;
+    top: -46px;
+    width: 332px;
+    line-height: 50px;
+    border-radius: 6px;
+    padding:  0 22px;
+    font-size: 16px;
+    background-color: white;
+}
+
+
+.place{
+         position: relative;
+         left: 200px;
+         top:-47px;                 
+         line-height: 50px;
+         width: 332px;
+         border-radius: 6px;
+         padding: 0 22px;
+         font-size: 20px;
+         color: #555; 
+}
+.description{ 
+    position: relative;
+    left: 200px;
+    top:-47px;                 
+    line-height: 50px;
+    width: 332px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 20px;
+    color: #555; 
+      
+}
+.submit{
+       position: relative;
+       left: 200px;
+       top: -47px;
+       line-height: 46px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+}
+
+.input-group{
+       position: relative;
+       left: 200px;
+       top: -47px;
+       line-height: 46px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+}
+
+button{
+         background-color: #3BAF9F;
+         display:block;
+         position: right;
+         margin:20px 0px 0px 20px;
+         text-align: center;
+         border-radius: 12px;
+         border: 2px solid #366473;
+         padding: 14px 110px;
+         outline: none;
+         color: white;
+         cursor: pointer;
+         transition: 0.25px;
+}
+
+
+
+
+
+
+
