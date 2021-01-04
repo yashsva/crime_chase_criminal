@@ -6,15 +6,20 @@
 </head>
 <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/police/search_results.css">
 
 </header>
 
 <body>
-    <%-include('../includes/search_bar.ejs')%>
+    <nav class="top">
 
+    <div class="search-bar">
+    <%-include('../includes/search_bar.ejs')%>
+</div>
+</nav>
 
     <div>
-        <h3><%=page_title %></h2>
+        <h3 class="title"><%=page_title %></h2>
         <% if(criminals.length > 0) { %>
         <% criminals.forEach(c =>{ %>
         <div>

@@ -3,15 +3,22 @@
   <head>
     <%-include('../includes/head.ejs')%>
   </head>
-  <header><%-include('../includes/navigation.ejs')%></header>
+  <header><%-include('../includes/navigation.ejs')%>
+  <link rel="stylesheet" href="/css/police/policedash.css"></header>
   <body>
-    <div>
-        <div>
-            <a href="/crime/crimes_details">Crime</a>
-          </div>
-          <div>
-            <a href="/criminal/criminals_details">Criminal</a>
-          </div>
+    <div id="header">
+      <h1 style="font-size: 50px";><br>WELCOME TO POLICE PORTAL</b></h1>
+    </div>
+    <div  class="slidebar" id = "slidebar">
+      <ul>
+           <li><a href="/crime/crimes_details">Crime</a></li>
+
+          <li><a href="/criminal/criminals_details">Criminal</a></li>  
+      </ul>
+    </div>
+  </div>
+  <div id="data">
+    <img src="/images/admin.jpg" alt="admin-logo" style="width: 450px; height: 400px; border: 10px solid black">
     </div>
   </body>
 </html>

@@ -41,7 +41,7 @@ exports.get_add_police_personnel = (req, res, next) => {
 exports.post_add_police_personnel = (req, res, next) => {
     console.log(req.body);
     const photo_filename = req.files[0].filename;
-
+    console.log(photo_filename);
     const personnel = new Police(null, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
     personnel.addPolice().then(result => {
         console.log(result);
