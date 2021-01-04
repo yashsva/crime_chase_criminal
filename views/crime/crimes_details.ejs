@@ -3,14 +3,18 @@
   <head>
     <%-include('../includes/head.ejs')%>
   </head>
-  <header><%-include('../includes/navigation.ejs')%></header>
+  <header><%-include('../includes/navigation.ejs')%>
+  <link rel="stylesheet" href="/css/crime/crime_details.css"></header>
 
   <body>
-    <div>
-      <a href="/crime/add_crime">Add Crimes</a>
-    </div>
+    <nav class="top">
+<ul>     
+  <li><a href="/crime/add_crime">Add Crimes</a></li> 
+</ul>
+<div class="search-bar">
     <%-include('../includes/search_bar.ejs')%>
-
+    </div>
+</nav>
     <div>
       <h3><%=page_title %></h3>
       <% if(crimes.length> 0) { %> <% crimes.forEach(c=>{ %>

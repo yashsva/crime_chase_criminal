@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+}
+body{	
+background-color: HoneyDew;
+background-size: cover;
+font-family: 'Montserrat',sans-serif;
+margin-top: 40px;
+}
+.regform{
+height: 90px;
+width: 800px;
+background-color: MistyRose;
+margin: auto;
+color:MidnightBlue;
+padding:10px 0px 10px 0px;
+text-align: center;
+font-size: 30px;
+border-radius: 15px 15px 0px 0px;
+}
+.main{
+background-color: rgb(0,0,0,0.8);
+width:800px;
+height: 1300px;
+margin: auto;
+}
+form{
+padding: 10px;
+}
+#col{
+width: 100%;
+height: 100px;
+}
+.row{
+     margin-left: 25px;
+     margin-top: 30px;
+     width: 125px;
+     color: LightGray;
+     font-size: 28px;
+     font-weight:  40px;
+}
+.firstname{
+       position: relative;
+       left: 200px;
+       top: -46px;
+       line-height: 50px;
+       width:332px;
+       border-radius: 6px;
+       padding: 0 22px;
+       font-size: 16px;
+}
+
+.password{
+ position: relative;
+ left: 200px;
+ top:-46px;
+ line-height: 50px;
+ width: 332px;
+ border-radius: 6px;
+ padding: 0 22px;
+ font-size: 16px;
+ color: #555; 
+}
+.email{
+     position: relative;
+      left: 200px;
+      top:-46px;
+      line-height: 50px;
+      width: 332px;
+      border-radius: 6px;
+      padding: 0 22px;
+      font-size: 16px;
+      color: #555; 
+}
+.dob{
+      position: relative;
+      left: 200px;
+      top: -46px;
+      width: 332px;
+      line-height: 50px;
+      border-radius: 6px;
+      padding:  0 22px;
+      font-size: 16px;
+      background-color: white;
+}
+
+
+.department{
+           position: relative;
+           left: 200px;
+           top:-46px;                 
+          line-height: 50px;
+          width: 332px;
+          border-radius: 6px;
+          padding: 0 22px;
+          font-size: 16px;
+          color: #555; 
+}
+.phone{
+      position: relative;
+      left: 200px;
+      top:-46px;
+      line-height: 50px;
+      width: 332px;
+      border-radius: 6px;
+      padding: 0 22px;
+      font-size: 16px;
+      color: #555; 
+}
+.gender{
+    position: relative;
+     left: 168px;
+     top:-40px;                 
+    line-height: 58px;
+    width: 141px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 16px;
+    color: white;
+    float: left;
+}
+.GRP{
+    position: relative;
+    left: 67px;
+    top:-31px;                 
+   line-height: 46px;
+   width: 181px;
+   border-radius: 6px;
+   padding: 0 22px;
+   font-size: 16px;
+   color: #ffffff;
+   float: left;
+
+}
+.photo{
+    position: relative;
+    left: 200px;
+    top: -47px;
+    line-height: 46px;
+    width:332px;
+    border-radius: 6px;
+    padding: 0 22px;
+    font-size: 24px;
+
+}
+button{
+         background-color: #3BAF9F;
+         display:block;
+         position: right;
+         margin:20px 0px 0px 20px;
+         text-align: center;
+         border-radius: 12px;
+         border: 2px solid #366473;
+         padding: 14px 110px;
+         outline: none;
+         color: white;
+         cursor: pointer;
+         transition: 0.25px;
+}

@@ -6,22 +6,27 @@
 </head>
 <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/criminal/criminal_details.css">
 
 </header>
 
 <body>
-    <div>
-        <a href="/criminal/add_criminal">Add Criminal Info</a>
+    <nav class="top">
+        <ul><li><a href="/criminal/add_criminal">Add_Criminal_Info</a></li></ul>
     </div>
-    <%-include('../includes/search_bar.ejs')%>
-
+    <div class="search-bar">
+        <%-include('../includes/search_bar.ejs')%>
+    </div>
+    
+   
+</nav>
 
     <div>
         <h3><%=page_title %></h2>
         <% if(criminals.length > 0) { %>
         <% criminals.forEach(c =>{ %>
         <div>
-            <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo">
+            <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo" height="310px" width="310px">
             <span><%=c.name%></span>
             <span><%=c.id %></span>
             <span><%=c.city %></span>

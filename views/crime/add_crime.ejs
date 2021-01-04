@@ -11,47 +11,51 @@
 </header>
 
 <body>
+    <div class="regform"><h1>ADD CRIME</h1></div>
+    <div class="main">
     <div><%=error_msg%></div>
     <form action="/crime/<% if(isEditing) { %>edit_crime/<%=crime.id%><% } else { %>add_crime <% } %>" method="POST"
         enctype="multipart/form-data">
-        <div>
+        <div id=col> 
             <div>
                 <label class="name" for="date">date:</label>
                 <input class="date" type="date" name="date" id="date" value="<% if(isEditing) { %><%=crime.date%><% } %>" required />
             </div>
-            <div>
-                <label class="name" for="city">city:</label>
+            <div class="name">
+                <label  for="city">city:</label>
                 <input class="place"type="text" name="city" id="city" value="<% if(isEditing) { %><%=crime.city%><% } %>" required />
             </div>
-            <div>
-                <span class="name">Crime Type :</span>
+            <div class="name">
+                <b>Crime Type :</b>
+            </div><br>
                 <% crime_types.forEach(ct=>{ %>
                 <span>
                     <input type="checkbox" name="crime_types" value="<%= ct.id %>"
                         <%=(ct.isSelected) ? 'checked' : '' %>>
                     <label for="crime_types"><%= ct.type_name %></label>
-                </span>
+                
                 <% }) %>
-            </div>
+            </span>
             <div>
-                <label  class="name" for="criminals_ids">Criminals:</label>
+            <div class="name">
+                <label   for="criminals_ids">Criminals:</label></div>
                 <div id="criminalIDs_input_div">
                     <% if(isEditing) { criminals.forEach(c=>{ %>
-                    <div>
+                    <div class="name"> 
                         <label for="criminal_id">ID :</label>
                         <input type="text" name="criminal_id" id="criminal_id" placeholder="Enter Criminal ID"
-                            value="<%=c.id%>" />
+                            value="<%=c.id%>"  class="id"/>
                         <button onclick="remove_criminalID_input(this)" class="remove_criminalID_input">Remove</button>
                     </div>
                     <% }) %>
                     <% } %>
-                    <div>
+                    <div class="name">
                         <label for="criminal_id">ID :</label>
-                        <input type="text" name="criminal_id" id="criminal_id" placeholder="Enter Criminal ID" />
+                        <input type="text" name="criminal_id" id="criminal_id" placeholder="Enter Criminal ID" class="id"/>
                         <button onclick="remove_criminalID_input(this)" class="remove_criminalID_input">Remove</button>
                     </div>
                 </div>
-                <button type="button" id="add_criminalID_field" onclick="add_criminalID_input(this)">Add Criminal</button>
+                <button type="button" id="add_criminalID_field" onclick="add_criminalID_input(this)" class="cri">Add Criminal</button>
             </div>
             <div>
                 <label class="name" for="description">description:</label>
@@ -64,8 +68,9 @@
             <% } else { %>
             <button type="submit">Submit</button>
             <% } %>
-        </div>
     </form>
+</div>
+
 </body>
 
 </html>

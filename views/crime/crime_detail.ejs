@@ -6,49 +6,52 @@
 </head>
 <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/crime/crimes_det.css">
 
 </header>
 
 <body>
-    <div>
+    <div class="main">
+            <div class="row">
         <b>ID:</b>
-        <span><%=crime.id%></span>
-    </div>
+        <span class="id"><%=crime.id%></span>
+</div>
 
-    <div>
+    <div class="row">
         <b>Date:</b>
-        <span><%=crime.date%></span>
+        <span class="dob"><%=crime.date%></span>
     </div>
-    <div>
+    <div class="row">
         <b>City:</b>
-        <span><%=crime.city%></span>
+        <span class="place"><%=crime.city%></span>
     </div>
-    <div>
+    <div class="row">
         <b>Crime Type:</b>
         <% crime.crime_type_names.forEach(name=>{ %>
 
-        <span><%=name%>, </span>
+        <span class="firstname"><%=name%>, </span>
         <%})%>
     </div>
     <% if(criminals.length > 0) { %>
-        <b>Criminals:</b>
+        <b class="row">Criminals:</b>
     <% criminals.forEach(c =>{ %>
-    <div>
-        <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo">
-        <span><%=c.name%></span>
-        <span><%=c.id %></span>
-        <span><%=c.city %></span>
-        <a href="/criminal/criminal_detail/<%=c.id%>">More Info</a>
+    <div id="col">
+        <img src="/images/criminals/<%=c.photo_filename%>" alt="criminal photo" class="photo" height="210px" width="210px">
+        <span class="firstname"><%=c.name%></span>
+        <span class="id "><%=c.id %></span><br>
+        <span class="place"><%=c.city %></span><br>
+        <a href="/criminal/criminal_detail/<%=c.id%>" class="id">More Info</a>
     </div>
     <% }) %>
     <% } %>
-    <div>
+    <div class="row">
         <b>Description:</b>
-        <span><%=crime.description%></span>
+        <span class="description"><%=crime.description%></span>
     </div>
-    <div>
-        <a href="/crime/edit_crime/<%=crime.id%>">Edit</a>
-        <a href="/crime/delete_crime/<%=crime.id%>">Delete</a>
+    <div class="submit">
+        <a href="/crime/edit_crime/<%=crime.id%>">Edit</a></div>
+        <div class="submit">
+        <a href="/crime/delete_crime/<%=crime.id%>">Delete</a></div>
     </div>
 </body>
 

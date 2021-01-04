@@ -6,12 +6,16 @@
 </head>
 <header>
     <%-include('./includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/adminlogin.css">
+    <script src="/javascripts/higher-off.js"></script>
 
 </header>
 
 <body>
-    <form action="<%=form_action_url%>" method="POST">
-        <div><%=error_msg%></div>
+    <div class="login-box">
+        <div class="form" >
+    <form id="form" action="<%=form_action_url%>" method="POST" onsubmit="return validation()">
+        <div id="error"><%=error_msg%></div>
         <div>
             <label for="userID">UserID</label>
             <input type="text" name="userID" id="userID">
@@ -22,6 +26,9 @@
         </div>
         <button type="submit">Submit</button>
     </form>
+        </div>
+    </div>
+
 </body>
 
 </html>
