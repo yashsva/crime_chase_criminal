@@ -1,0 +1,51 @@
+
+.regform {
+  
+  width: 50%;
+  background-color: Orange;
+  margin: auto;
+  color: MidnightBlue;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 5px;
+  text-shadow: 0px 2px 10px black;
+}
+.main {
+  text-align: center;
+  margin: 10px;
+}
+form {
+  padding: 10px;
+}
+
+.row {
+  color: LightGray;
+  font-size: 25px;
+  background-color: #333131cc;
+  width: 50%;
+  margin: auto;
+  
+  justify-content: center;
+  padding: 25px;
+  text-shadow: 0px 5px 5px black;
+  box-shadow: 0px 1px 10px 0px black;
+  
+}
+.row input{
+       color: black;
+       padding: 5px;
+}
+
+button{
+       background-color: #3BAF9F;
+    padding: 11px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 200px;
+    text-shadow: 0px 2px 3px black;
+    box-shadow: 0px 2px 12px #504747;
+    font-size: 20px;
+    cursor: pointer;
+
+}

@@ -6,50 +6,61 @@
 </head>
 <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/police/police_personnel.css">
+
 
 </header>
 
 <body>
-    <div>
-        <b>Photo:</b>
-        <img src="/images/polices/<%=personnel.photo_filename%>" alt="police photo">
+    
+    <div class="main">
+       
+        <div class="row">
+        <b>Photo : </b>
+        <img src="/images/polices/<%=personnel.photo_filename%>" alt="police photo" class="photo" >
+    
     </div>
-    <div>
-        <b>ID:</b>
-        <span><%=personnel.id%></span>
+    
+    <div class="row">
+        <b>ID : </b>
+        <span class="id"><%=personnel.id%></span>
     </div>
-    <div>
-        <b>Name:</b>
-        <span><%=personnel.name%></span>
+    <div class="row">
+        <b>Name : </b>
+        <span class="firstname"><%=personnel.name%></span>
     </div>
-    <div>
-        <b>Department:</b>
-        <span><%=personnel.department%></span>
+    <div class="row">
+        <b>Department : </b>
+        <span class="department"><%=personnel.department%></span>
     </div>
-    <div>
-        <b>Phone:</b>
-        <span><%=personnel.phone%></span>
+    
+    <div class="row">
+        <b>Phone : </b>
+        <span class="phone"><%=personnel.phone%></span>
     </div>
-    <div>
-        <b>email:</b>
-        <span><%=personnel.email%></span>
+    
+    <div class="row"> 
+        <b>Email : </b>
+        <span class="Email"><%=personnel.email%></span>
     </div>
-    <div>
-        <b>DOB:</b>
-        <span><%=personnel.dob%></span>
+    <div class="row">
+        <b>DOB : </b>
+        <span class="dob"><%=personnel.dob%></span>
     </div>
-    <div>
-        <b>Password:</b>
-        <span><%=personnel.password%></span>
+    <div class="row">
+        <b>Password : </b>
+        <span class="password"><%=personnel.password%></span>
     </div>
-    <div>
-        <b>Gender:</b>
-        <span><%=personnel.gender%></span>
+    <div class="row">
+        <b>Gender : </b>
+        <span class="gender"><%=personnel.gender%></span>
     </div>
-    <div>
-        <a href="/admin/edit_police_personnel_info/<%=personnel.id%>">Edit</a>
-        <a href="/admin/delete_police_personnel_by_id/<%=personnel.id%>">Delete</a>
+    <div class="submit row">
+        <a href="/admin/edit_police_personnel_info/<%=personnel.id%>" >Edit</a></div>
+        <div class="submit row">
+      <a href="/admin/delete_police_personnel_by_id/<%=personnel.id%>">Delete</a></div>
     </div>
+</div>
 </body>
 
 </html>

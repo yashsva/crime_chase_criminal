@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
+.main {
+  /* box-shadow: 0px 2px 12px 2px grey; */
+  text-align: center;
+  margin: 10px;
+}
+form {
+  padding: 10px;
+}
+.row {
+  
+  color: LightGray;
+  font-size: 25px;
+  background-color: #333131cc;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  text-shadow: 0px 5px 5px black;
+  box-shadow: 0px 1px 10px 0px grey;
+}
+
+.row img{
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 2px black;
+    padding: 5px;
+    margin: 5px;
+    width: 300px;
+    height: 300px;
+}
+
+
+.row a {
+  background-color: black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.5s ease;
+}
+
+.row a:hover{
+    color:#ff4545
+}
+
+.row div{
+    padding: 5px;
+}
+
+.crimes_list_item {
+    padding: 10px;
+    
+    box-shadow: 0px 3px 10px #9c9c9c;
+    color: #bcccda;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #101010;
+    transition: all 0.5s ease;
+    text-shadow: 0px 5px 2px black;
+    font-size: 12px;
+  }
+  .crimes_list_item:hover {
+    transition: all 0.4s ease;
+    background-color: #202020;
+    transform: scale(1.1, 1.05);
+  }
+  
+  
+  .crimes_list_item div {
+    text-align: center;
+    
+  }
+  
+  .crimes_list_item a {
+    align-self: center;
+    text-decoration: none;
+    color: #ffc5c0;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    font-size: 10px;
+  }
+  .crimes_list_item a:hover {
+    color: #dc261c;
+  }
+  

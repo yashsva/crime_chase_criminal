@@ -2,13 +2,10 @@
 <nav class="header_nav">
     <ul class="nav_logo">
         <li class="nav_list-item">
-            <a href="/">Website Logo</a>
+            <a href="/">CCC</a>
         </li>
     </ul>
     <ul class="nav_list">
-        <li class="nav_list-item">
-            <a class="<%= path==='/' ? 'active': '' %>" href="/">Home</a>
-        </li>
         <% if(!isAuthenticated) { %>
         <li class="nav_list-item">
             <a class="<%= path==='/auth/admin_login' ? 'active': '' %>" href="/auth/admin_login">Admin</a>
@@ -21,10 +18,17 @@
         </li>
         <% } else{ %>
         <% if(isAdmin) { %>
+            <li class="nav_list-item">
+                <a class="<%= path==='/admin/dashboard' ? 'active': '' %>" href="/admin/dashboard">Dashboard</a>
+            </li>
         <li class="nav_list-item">
-            <a class="<%= path==='/admin/polices-details' ? 'active': '' %>" href="/admin/polices-details">Polices</a>
+            <a class="<%= path==='/admin/polices-details' ? 'active': '' %>" href="/admin/polices_details">Polices</a>
         </li>
-        <% } %>
+        <% } else { %>
+            <li class="nav_list-item">
+                <a class="<%= path==='/police/dashboard' ? 'active': '' %>" href="/police/dashboard">Dashboard</a>
+            </li>
+            <% } %>
         <li class="nav_list-item">
             <a class="<%= path==='/crime/crimes_details' ? 'active': '' %>" href="/crime/crimes_details">Crimes</a>
         </li>

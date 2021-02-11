@@ -15,6 +15,9 @@ exports.get_crimes_details = (req, res, next) => {
         crimes_types = data;
         return Crime.getAllCrimes();
     }).then(([data, others]) => {
+        data.forEach(crime=>{
+            crime.date=date_convertor.date_to_YYYY_MM_DD(crime.date);
+        });
         data.crimes_types = crimes_types;
         // console.log(data);s
         res.render('crime/crimes_details', {
@@ -115,6 +118,7 @@ exports.get_crime_detail_by_ID = (req, res, next) => {
     let selected_crime_type_names = [], crime_data;
     Crime.getCrimeById(crimeId).then(([data, others]) => {
         crime_data = data[0]
+        crime_data.date=date_convertor.date_to_YYYY_MM_DD(crime_data.date);
         // console.log(crime_data);
         return Crime_to_crimeTypes.getCrimeTypeNamesByCrimeId(crimeId);
     }).then(([data, others]) => {
@@ -143,8 +147,12 @@ exports.get_edit_crime_detail = (req, res, next) => {
     let selected_crime_type_ids = [], crime_data;
     var criminals;
     Crime.getCrimeById(crimeId).then(([data, others]) => {
-        crime_data = data[0]
+        crime_data = data[0];
         // console.log(crime_data);
+        
+        crime_data.date=date_convertor.date_to_YYYY_MM_DD(crime_data.date);
+        
+        
         return Crime_criminal.getAllCriminalsByCrimeID(crimeId);
     }).then(([data, others]) => {
         criminals = data;
@@ -168,7 +176,7 @@ exports.get_edit_crime_detail = (req, res, next) => {
                 ct.isSelected = false;
         })
 
-        crime_data.date = date_convertor.date_to_YYYY_MM_DD(crime_data.date);
+        
 
         res.render('crime/add_crime', {
             page_title: 'Edit Crime',
@@ -263,6 +271,9 @@ exports.search_crime = (req, res, next) => {
     // console.log(search_text);
     Crime.searchCrime(search_text).then(([crimes, others]) => {
         // console.log(crimes);
+        crimes.forEach(crime=>{
+            crime.date=date_convertor.date_to_YYYY_MM_DD(crime.date);
+        })
         res.render('crime/search_results', {
             page_title: 'Search Results',
             path: '/crime/search',

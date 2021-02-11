@@ -3,21 +3,36 @@
   <head>
     <%-include('../includes/head.ejs')%>
   </head>
-  <header><%-include('../includes/navigation.ejs')%></header>
+  <header>
+    <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/crime/crime_details.css" />
+  </header>
 
   <body>
-    <div>
-      <a href="/crime/add_crime">Add Crimes</a>
-    </div>
-    <%-include('../includes/search_bar.ejs')%>
-
-    <div>
+    <nav class="top">
+      <ul>
+        <li><a href="/crime/add_crime">Add Crime</a></li>
+      </ul>
+      <div class="search-bar"><%-include('../includes/search_bar.ejs')%></div>
+    </nav>
+    <div class="crimes_list">
       <h3><%=page_title %></h3>
       <% if(crimes.length> 0) { %> <% crimes.forEach(c=>{ %>
-      <div>
-        <span> <%=c.id %> </span>
-        <span> <%=c.date%> </span>
-        <span> <%=c.city%> </span>
+      <div class="crimes_list_item">
+        <div>
+          <div>
+            <b>ID : </b>
+            <span> <%=c.id %> </span>
+          </div>
+          <div>
+            <b>City : </b>
+            <span> <%=c.city %> </span>
+          </div>
+          <div>
+            <b>Date : </b>
+            <span> <%=c.date%> </span>
+          </div>
+        </div>
         <a href="/crime/crime_detail/<%=c.id%>">More Info</a>
       </div>
       <% }) %> <% } %>

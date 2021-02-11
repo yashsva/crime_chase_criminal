@@ -17,6 +17,7 @@
 
 .nav_list-item {
     margin: 0 20px;
+    text-shadow: 1px 6px 5px black;
 }
 
 .nav_list-item a {
@@ -26,9 +27,11 @@
     text-decoration: none;
     color: white;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 .nav_list-item a:hover,
 .nav_list-item a:active,
 .nav_list-item a.active{
-    color: rgb(252, 115, 35);
+    color: #ff4545;
+    transition: all 0.3s ease;
 }

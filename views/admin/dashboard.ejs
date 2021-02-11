@@ -3,17 +3,23 @@
   <head>
     <%-include('../includes/head.ejs')%>
   </head>
-  <header><%-include('../includes/navigation.ejs')%></header>
+  <header>
+    <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/admin/higher-dashboard.css" />
+  </header>
   <body>
-    <div>
+    <div id="header">
+      <h2>WELCOME TO ADMIN PORTAL</h2>
       <div>
-        <a href="/admin/polices_details">Police</a>
-      </div>
-      <div>
-        <a href="/crime/crimes_details">Crime</a>
-      </div>
-      <div>
-        <a href="/criminal/criminals_details">Criminal</a>
+        <div>
+          <a href="/admin/polices_details">Police</a>
+        </div>
+        <div>
+          <a href="/crime/crimes_details">Crime</a>
+        </div>
+        <div>
+          <a href="/criminal/criminals_details">Criminal</a>
+        </div>
       </div>
     </div>
   </body>

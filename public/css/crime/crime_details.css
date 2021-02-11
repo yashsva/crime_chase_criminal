@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+.top {
+  width: 100%;
+  background: #142b47;
+  overflow: auto;
+}
+.top ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 60px;
+}
+.top li {
+  float: left;
+}
+.top ul li a {
+  background: #142b47;
+  text-decoration: none;
+  width: 130px;
+  display: block;
+  text-align: center;
+  color: #f2f2f2;
+  font-size: 18px;
+  text-shadow: 0px 10px 10px black;
+  transition: all 0.3s ease;
+}
+.top li a:hover {
+  color: #ff4545;
+  transition: all 0.3s ease;
+}
+.search-bar {
+  margin-top: 15px;
+  float: right;
+  margin-right: 100px;
+}
+input[type="text"] {
+  padding: 7px;
+  border: none;
+  font-size: 16px;
+  color: black;
+}
+button {
+  float: right;
+  background: orange;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  position: relative;
+  padding: 7px;
+  border: none;
+  font-size: 16px;
+}
+.crimes_list_item {
+  padding: 10px;
+  width: 45%;
+  box-shadow: 0px 3px 10px #9c9c9c;
+  color: #bcccda;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #101010;
+  transition: all 0.5s ease;
+  text-shadow: 0px 5px 2px black;
+}
+.crimes_list_item:hover {
+  transition: all 0.4s ease;
+  background-color: #202020;
+  transform: scale(1.1, 1.05);
+}
+
+.crimes_list_item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 1px 10px 5px black;
+}
+.crimes_list_item div {
+  text-align: center;
+  margin: 6px;
+}
+
+.crimes_list_item a {
+  align-self: center;
+  text-decoration: none;
+  color: #ffc5c0;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+.crimes_list_item a:hover {
+  color: #dc261c;
+}
+
+.crimes_list {
+  text-align: center;
+  padding: 20px;
+}

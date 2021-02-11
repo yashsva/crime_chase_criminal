@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%-include('../includes/head.ejs')%>
-</head>
-<header>
+  </head>
+  <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/criminal/criminal_det.css" />
+  </header>
 
-</header>
-
-<body>
-    <div>
-        <b>Photo:</b>
-        <img src="/images/criminals/<%=criminal.photo_filename%>" alt="criminal photo">
-    </div>
-    <div>
-        <b>ID:</b>
-        <span><%=criminal.id%></span>
-    </div>
-    <div>
-        <b>Name:</b>
-        <span><%=criminal.name%></span>
-    </div>
-    <div>
-        <b>Gender:</b>
-        <span><%=criminal.gender%></span>
-    </div>
-    <div>
-        <b>Height:</b>
-        <span><%=criminal.height%></span>
-    </div>
-    <div>
-        <b>Weight:</b>
-        <span><%=criminal.weight%></span>
-    </div>
-    <div>
-        <b>DOB:</b>
-        <span><%=criminal.dob%></span>
-    </div>
-    <div>
-        <b>City:</b>
-        <span><%=criminal.city%></span>
-    </div>
-    <div>
-        <% if(crimes.length> 0) { %>
-        <b>Crimes:</b>
-        <% crimes.forEach(c=>{ %>
-        <div>
-            <span> <%=c.id %> </span>
-            <span> <%=c.date%> </span>
-            <span> <%=c.city%> </span>
-            <a href="/crime/crime_detail/<%=c.id%>">More Info</a>
+  <body>
+    <div class="main">
+      <div id="col">
+        <div class="row">
+          <b>Photo : </b>
+          <img
+            src="/images/criminals/<%=criminal.photo_filename%>"
+            alt="criminal photo"
+            class="photo"
+            height="310px"
+          />
         </div>
-    </div>
-    <% }) %> <% } %>
-    <div>
+      </div>
+      <div class="row">
+        <b>ID : </b>
+        <span class="id"><%=criminal.id%></span>
+      </div>
+      <div class="row">
+        <b>Name : </b>
+        <span class="firstname"><%=criminal.name%></span>
+      </div>
+      <div class="row">
+        <b>Gender : </b>
+        <span class="gender"><%=criminal.gender%></span>
+      </div>
+      <div class="row">
+        <b>Height : </b>
+        <span class="height"><%=criminal.height%></span>
+      </div>
+      <div class="row">
+        <b>Weight : </b>
+        <span class="weight"><%=criminal.weight%></span>
+      </div>
+      <div class="row">
+        <b>DOB : </b>
+        <span class="dob"><%=criminal.dob%></span>
+      </div>
+      <div class="row">
+        <b>City : </b>
+        <span class="place"><%=criminal.city%></span>
+      </div>
+      <% if(crimes.length> 0) { %>
+        <div class="row">
+        <b>Crimes : </b>
+        <div>
+          <% crimes.forEach(c=>{ %>
+            <div class="crimes_list_item">
+                <div>
+                  <div>
+                    <b>ID : </b>
+                    <span> <%=c.id %> </span>
+                  </div>
+                  <div>
+                    <b>City : </b>
+                    <span> <%=c.city %> </span>
+                  </div>
+                  <div>
+                    <b>Date : </b>
+                    <span> <%=c.date%> </span>
+                  </div>
+                </div>
+                <a href="/crime/crime_detail/<%=c.id%>">More Info</a>
+              </div>
+          <% }) %> 
+        </div>
+      </div>
+          <% } %>
+      <div class="submit row">
         <a href="/criminal/edit_criminal_detail/<%=criminal.id%>">Edit</a>
+      </div>
+      <div class="submit row">
         <a href="/criminal/delete_criminal/<%=criminal.id%>">Delete</a>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

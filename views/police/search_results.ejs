@@ -3,19 +3,34 @@
   <head>
     <%-include('../includes/head.ejs')%>
   </head>
-  <header><%-include('../includes/navigation.ejs')%></header>
+  <header>
+    <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/police/search_results.css" />
+  </header>
 
   <body>
-    <%-include('../includes/search_bar.ejs')%>
-
-    <div>
-      <h3><%=page_title %></h3>
+    <nav class="top">
+      <div class="search-bar"><%-include('../includes/search_bar.ejs')%></div>
+    </nav>
+    <div class="polices_list">
+      <h3 class="title"><%=page_title %></h3>
       <% if(polices.length> 0) { %> <% polices.forEach(p=>{ %>
-      <div>
+      <div class="polices_list_item">
         <img src="/images/polices/<%=p.photo_filename%>" alt="police photo" />
-        <span> <%=p.name%> </span>
-        <span> <%=p.id %> </span>
-        <span> <%=p.department %> </span>
+        <div>
+          <div>
+            <b>Name : </b>
+            <span> <%=p.name%> </span>
+          </div>
+          <div>
+            <b>ID : </b>
+            <span> <%=p.id %> </span>
+          </div>
+          <div>
+            <b>Department : </b>
+            <span> <%=p.department %> </span>
+          </div>
+        </div>
         <a href="/admin/police_personnel_info/<%=p.id%>">More Info</a>
       </div>
       <% }) %> <% } %>

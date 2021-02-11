@@ -6,68 +6,88 @@
 </head>
 <header>
     <%-include('../includes/navigation.ejs')%>
+    <link rel="stylesheet" href="/css/police/addpo.css">
 
 </header>
 
 <body>
+    <div class="regform"><h1><%=page_title%></h1></div>
+        <div class="main">
     <div><%=error_msg%></div>
-    <form
+    <form 
         action="/admin/<% if(isEditing) { %>edit_police_personnel_info/<%=personnel.id%><% } else { %>add_police_personnel <% } %>"
         method="POST" enctype="multipart/form-data">
-        <div>
-            <div>
-                <label for="name">name</label>
-                <input type="text" name="name" id="name" value="<% if(isEditing) { %><%=personnel.name%><% } %>">
-            </div>
-            <div>
-                <label for="dob">dob</label>
-                <input type="date" name="dob" id="dob" value="<% if(isEditing) { %><%=personnel.dob%><% } %>">
-            </div>
-            <div>
-                <label for="phone">phone</label>
-                <input type="text" name="phone" id="phone" maxlength="10"
-                    value="<% if(isEditing) { %><%=personnel.phone%><% } %>">
-            </div>
-            <div>
-                <label for="email">email</label>
-                <input type="email" name="email" id="email" value="<% if(isEditing) { %><%=personnel.email%><% } %>">
-            </div>
-            <div>
-                <label for="department">department</label>
-                <input type="text" name="department" id="department"
-                    value="<% if(isEditing) { %><%=personnel.department%><% } %>">
-            </div>
-            <div>
-                <input type="radio" name="gender" id="male" value="male"
-                    <%= (isEditing && personnel.gender==='male')?'checked':'' %>>
-                <label for="male">male</label>
-                <input type="radio" name="gender" id="female" value="female"
-                    <%= (isEditing && personnel.gender==='female')?'checked':'' %>>
-                <label for="female">female</label>
+        
+        <div id="col">
+        <div class="row" >
+        <label for="name">Name : </label>
+                <input type="text" class="firstname" name="name" id="name" value="<% if(isEditing) { %><%=personnel.name%><% } %>" required>
+             </div>
+        </div>
 
+             <div class="row" >
+                <label for="dob">Dob : </label>
+                <input type="date" class="dob" name="dob" id="dob" value="<% if(isEditing) { %><%=personnel.dob%><% } %>" required>
             </div>
-            <div>
-                <label for="police_photo">photo</label>
+
+            <div class="row" >
+                <label for="phone">Phone : </label>
+                <input type="text" class="phone" name="phone" id="phone" maxlength="10" 
+                    value="<% if(isEditing) { %><%=personnel.phone%><% } %>" required>
+                </div>
+
+                <div class="row" >
+                <label  for="email">Email : </label>
+                <input type="email" name="email" id="email" class="email" value="<% if(isEditing) { %><%=personnel.email%><% } %>" required>
+                </div>
+
+                <div class="row" >
+                <label  for="department">Department : </label>
+                <input type="text" name="department" id="department" class="department"
+                    value="<% if(isEditing) { %><%=personnel.department%><% } %>" required>
+            </div>
+
+            <div class="row" >           
+
+                <label>Gender : </label> 
+                <input type="radio" name="gender" id="male" value="male" class="gender"
+                    <%= (isEditing && personnel.gender==='male')?'checked':'' %>>
+                <label for="male"class="GRP">male</label>
+                <input type="radio" name="gender" id="female" value="female" class="gender"
+                    <%= (isEditing && personnel.gender==='female')?'checked':'' %>>
+                <label for="female" class="GRP">female</label>
+            </div>
+            <div class="row" >
+                <label for="police_photo">Photo : </label>
                 <% if(isEditing){ %>
                 <img src="/images/polices/<%=personnel.photo_filename%>" alt="police photo">
-                <input type="hidden" name="old_police_photo" id="old_police_photo"
+                <div>
+
+                    <input type="hidden" name="old_police_photo" id="old_police_photo"
                     value="<%if(isEditing) { %><%=personnel.photo_filename%><% } %>">
-                <% } %>
-                <input type="file" name="police_photo" id="police_photo"
-                    value="<%if(isEditing) { %><%=personnel.photo_filename%><% } %>">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password"
+                    <% } %>
+                    <input type="file" name="police_photo" id="police_photo" class="photo"
+                    value="<%if(isEditing) { %><%=personnel.photo_filename%><% } %>" >
+                </div>
+                </div>
+
+                <div class="row" >
+                <label  for="password">Password : </label>
+                <input type="password" name="password" id="password" class="password" required
                     value="<%if(isEditing) { %><%=personnel.password%><% } %>">
-            </div>
+            
+                </div> 
+
+                
+            
             <% if(isEditing) { %>
-            <button type="submit">Update</button>
-            <% } else { %>
-            <button type="submit">Submit</button>
-            <% } %>
+                <button type="submit">Update</button>
+                <% } else { %>
+                <button type="submit">Submit</button>
+                <% } %>
         </div>
     </form>
+        
 </body>
 
 </html>

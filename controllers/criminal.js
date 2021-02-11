@@ -22,10 +22,14 @@ exports.get_criminal_detail_by_id = (req, res, next) => {
     var crimes=[];
     Crime_criminal.getAllCrimesByCriminalID(id).then(([data,others])=>{
         crimes=data;
+        crimes.forEach(crime=>{
+            crime.date=date_convertor.date_to_YYYY_MM_DD(crime.date);
+        })
         return Criminal.getCriminalById(id);
     })
     .then(([data, others]) => {
         // console.log(data);
+        data[0].dob=date_convertor.date_to_YYYY_MM_DD(data[0].dob);
         res.render('criminal/criminal_detail', {
             page_title: 'Criminal detail',
             path: '/criminal/criminal_detail',
