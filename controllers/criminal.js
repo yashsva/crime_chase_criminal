@@ -6,6 +6,8 @@ const Crime_criminal = crimeModel.Crime_criminal;
 
 const file_handling = require('../utils/file_handling');
 const date_convertor = require('../utils/date_convertor');
+const cloudinary_util = require('../utils/cloudinary');
+
 
 exports.get_criminals_details = (req, res, next) => {
     Criminal.getAllCriminals().then(([data, others]) => {
@@ -19,27 +21,27 @@ exports.get_criminals_details = (req, res, next) => {
 
 exports.get_criminal_detail_by_id = (req, res, next) => {
     const id = req.params.id;
-    var crimes=[];
-    Crime_criminal.getAllCrimesByCriminalID(id).then(([data,others])=>{
-        crimes=data;
-        crimes.forEach(crime=>{
-            crime.date=date_convertor.date_to_YYYY_MM_DD(crime.date);
+    var crimes = [];
+    Crime_criminal.getAllCrimesByCriminalID(id).then(([data, others]) => {
+        crimes = data;
+        crimes.forEach(crime => {
+            crime.date = date_convertor.date_to_YYYY_MM_DD(crime.date);
         })
         return Criminal.getCriminalById(id);
     })
-    .then(([data, others]) => {
-        // console.log(data);
-        data[0].dob=date_convertor.date_to_YYYY_MM_DD(data[0].dob);
-        res.render('criminal/criminal_detail', {
-            page_title: 'Criminal detail',
-            path: '/criminal/criminal_detail',
-            criminal: data[0],
-            crimes:crimes
-        });
-    }).catch(err => {
-        console.log(err);
-        res.redirect('/criminal/criminals_details')
-    })
+        .then(([data, others]) => {
+            // console.log(data);
+            data[0].dob = date_convertor.date_to_YYYY_MM_DD(data[0].dob);
+            res.render('criminal/criminal_detail', {
+                page_title: 'Criminal detail',
+                path: '/criminal/criminal_detail',
+                criminal: data[0],
+                crimes: crimes
+            });
+        }).catch(err => {
+            console.log(err);
+            res.redirect('/criminal/criminals_details')
+        })
 }
 
 
@@ -56,20 +58,39 @@ exports.post_add_criminal_detail = (req, res, next) => {
     console.log(req.body);
     // console.log(req.files);
     const name = req.body.name;
-    const photo_filename = req.files[0].filename;
+    const photo_filepath = req.files[0].path;
+    var photo_filename;
     const height = req.body.height;
     const weight = req.body.weight;
     const gender = req.body.gender;
     const dob = req.body.dob;
     const city = req.body.city;
 
-    const criminal = new Criminal(null, name, photo_filename, height, weight, dob, city, gender);
-    criminal.addCriminal().then(result => {
-        console.log(result);
-        res.redirect('/criminal/criminals_details');
-    }).catch(err => {
-        console.log(err);
-    });
+    cloudinary_util.uploader.upload(photo_filepath, {
+        folder: "crime-chase-criminal/criminals",
+        format: "jpg"
+    }, (err, result) => {
+        // console.log(result);
+        if (err) {
+            // console.log(err);
+            throw new Error(err);
+        }
+        var { public_id } = result;
+        photo_filename = public_id;
+        // console.log(photo_filename);
+
+        file_handling.delete_file(photo_filepath);
+    }).then(() => {
+        const criminal = new Criminal(null, name, photo_filename, height, weight, dob, city, gender);
+        return criminal.addCriminal();
+    })
+        .then(result => {
+            console.log(result);
+            res.redirect('/criminal/criminals_details');
+        }).catch(err => {
+            console.log(err);
+
+        });
 
 
 }
@@ -96,7 +117,8 @@ exports.get_edit_criminal_by_id = (req, res, next) => {
 exports.post_edit_criminal_by_id = (req, res, next) => {
     const id = req.params.id;
     const name = req.body.name;
-    let photo_filename = req.body.old_criminal_photo;
+    let old_photo_filename = req.body.old_criminal_photo;
+    let photo_filename = "";
     const height = req.body.height;
     const weight = req.body.weight;
     const gender = req.body.gender;
@@ -104,16 +126,47 @@ exports.post_edit_criminal_by_id = (req, res, next) => {
     const city = req.body.city;
 
     if (req.files.length > 0) {
-        file_handling.delete_file('public/images/criminals/' + photo_filename);
-        photo_filename = req.files[0].filename;
+        photo_filepath = req.files[0].path;
+
+        cloudinary_util.uploader.upload(photo_filepath, {
+            folder: "crime-chase-criminal/criminals",
+            format: "jpg"
+        }, (err, result) => {
+            // console.log(result);
+            if (err) {
+                throw new Error(err);
+            }
+            var { public_id } = result;
+            photo_filename = public_id;
+
+            file_handling.delete_file(photo_filepath);
+        }).then(() => {
+            const updated_criminal = new Criminal(id, name, photo_filename, height, weight, dob, city, gender);
+            return updated_criminal.updateCriminal();
+        }).then(result => {
+            // console.log(result);
+            res.redirect('/criminal/criminals_details');
+            return cloudinary_util.uploader.destroy(old_photo_filename, { invalidate: true }, (err, result) => {
+
+                // console.log(result);
+            });
+        }).catch(err => {
+            console.log(err);
+        });
     }
-    const updated_criminal = new Criminal(id, name, photo_filename, height, weight, dob, city, gender);
-    updated_criminal.updateCriminal().then(result => {
-        // console.log(result);
-        res.redirect('/criminal/criminals_details');
-    }).catch(err => {
-        console.log(err);
-    });
+    else {
+
+        photo_filename = old_photo_filename;
+
+        const updated_criminal = new Criminal(id, name, photo_filename, height, weight, dob, city, gender);
+        updated_criminal.updateCriminal()
+            .then(result => {
+                // console.log(result);
+                res.redirect('/criminal/criminals_details');
+            }).catch(err => {
+                console.log(err);
+            });
+    }
 }
 
 
@@ -122,15 +175,17 @@ exports.delete_criminal_by_id = (req, res, next) => {
     Criminal.getCriminalById(id).then(([data, others]) => {
         // console.log(data);
         photo_filename = data[0].photo_filename;
-        file_handling.delete_file('public/images/criminals/' + photo_filename);
+        cloudinary_util.uploader.destroy(photo_filename, { invalidate: true }, (err, result) => {
+
+            // console.log(result);
+        });        
         return Criminal.deleteCriminalById(id);
     })
         .then(result => {
-            console.log(result);
+            // console.log(result);
             res.redirect('/criminal/criminals_details');
         }).catch(err => {
             console.log(err);
-            res.redirect('/criminal/criminals_details');
         })
 }
 

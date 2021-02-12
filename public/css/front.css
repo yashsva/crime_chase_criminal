@@ -14,7 +14,7 @@ h1{
 .wrapper{
 	border: 2px solid black;
 	
-    background:linear-gradient(rgba(0,0,1,0.2),rgba(0,0,0,0.2)) ,url('/images/crime.jpg');
+    background:linear-gradient(rgba(0,0,1,0.2),rgba(0,0,0,0.2)) ,url('https://res.cloudinary.com/dkxhnyynn/image/upload/v1613116542/crime-chase-criminal/crime_vlt4f8.jpg');
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

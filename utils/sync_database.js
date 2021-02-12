@@ -4,7 +4,7 @@ const adminTable = "CREATE TABLE IF NOT EXISTS `admin` ("
     + "`id` int NOT NULL AUTO_INCREMENT,"
     + "`password` varchar(45) NOT NULL,"
     + "PRIMARY KEY (`id`)"
-    + ") ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
+    + ") ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
 const police_table="CREATE TABLE IF NOT EXISTS `police` ("
 + "    `name` varchar(30) NOT NULL,"
@@ -14,13 +14,13 @@ const police_table="CREATE TABLE IF NOT EXISTS `police` ("
 + "   `dob` date NOT NULL,"
 + "   `password` varchar(45) NOT NULL,"
 + "   `id` int NOT NULL AUTO_INCREMENT,"
-+ "   `photo_filename` varchar(45) NOT NULL,"
++ "   `photo_filename` varchar(100) NOT NULL,"
 + "   `gender` varchar(6) NOT NULL,"
 + "   PRIMARY KEY (`id`),"
 + "   UNIQUE KEY `phone_UNIQUE` (`phone`),"
 + "    UNIQUE KEY `email_UNIQUE` (`email`),"
 + "    UNIQUE KEY `photo_filename_UNIQUE` (`photo_filename`)"
-+ " ) ENGINE=InnoDB AUTO_INCREMENT=10007 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Police details' ";
++ " ) ENGINE=InnoDB AUTO_INCREMENT=10007 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Police details' ";
       
 
 const all_crime_types_table = "CREATE TABLE IF NOT EXISTS `all_crime_types` ("
@@ -28,7 +28,7 @@ const all_crime_types_table = "CREATE TABLE IF NOT EXISTS `all_crime_types` ("
     + "`type_name` varchar(45) NOT NULL,"
     + "PRIMARY KEY (`id`),"
     + "UNIQUE KEY `type_name_UNIQUE` (`type_name`)"
-    + " ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci"
+    + " ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
 
 const crime_table = "CREATE TABLE IF NOT EXISTS `crime` ("
     + "  `id` int NOT NULL AUTO_INCREMENT,"
@@ -36,11 +36,11 @@ const crime_table = "CREATE TABLE IF NOT EXISTS `crime` ("
     + "  `city` varchar(45) NOT NULL,"
     + "    `description` varchar(300) NOT NULL,"
     + "    PRIMARY KEY (`id`)"
-    + "  ) ENGINE=InnoDB AUTO_INCREMENT=10015 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
+    + "  ) ENGINE=InnoDB AUTO_INCREMENT=10015 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
 const criminal_table = "CREATE TABLE IF NOT EXISTS `criminal` ("
     + "   `name` varchar(30) NOT NULL,"
-    + "   `photo_filename` varchar(45) NOT NULL,"
+    + "   `photo_filename` varchar(100) NOT NULL,"
     + "    `height` int NOT NULL,"
     + "    `weight` int NOT NULL,"
     + "   `dob` date NOT NULL,"
@@ -48,7 +48,7 @@ const criminal_table = "CREATE TABLE IF NOT EXISTS `criminal` ("
     + "    `city` varchar(25) NOT NULL,"
     + "   `gender` varchar(15) NOT NULL,"
     + "   PRIMARY KEY (`id`)"
-    + " ) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='criminal table' ";
+    + " ) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='criminal table' ";
 
 const crime_criminal_table="CREATE TABLE IF NOT EXISTS `crime_criminal` ("
 + "   `crime_id` int NOT NULL,"
@@ -58,7 +58,7 @@ const crime_criminal_table="CREATE TABLE IF NOT EXISTS `crime_criminal` ("
 + "   KEY `criminal_id_idx` (`criminal_id`),"
 + "   CONSTRAINT `crime_criminal_ibfk_1` FOREIGN KEY (`crime_id`) REFERENCES `crime` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,"
 + "   CONSTRAINT `crime_criminal_ibfk_2` FOREIGN KEY (`criminal_id`) REFERENCES `criminal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
-+ " ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
++ " ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
   
 const crime_to_crime_type_table="CREATE TABLE IF NOT EXISTS `crime_to_crime_types` ("
 + "   `crime_id` int NOT NULL,"
@@ -67,31 +67,40 @@ const crime_to_crime_type_table="CREATE TABLE IF NOT EXISTS `crime_to_crime_type
 + "   KEY `crime_type_id_idx` (`crime_type_id`),"
 + "   CONSTRAINT `crime_id` FOREIGN KEY (`crime_id`) REFERENCES `crime` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,"
 + "   CONSTRAINT `crime_type_id` FOREIGN KEY (`crime_type_id`) REFERENCES `all_crime_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
-+ " ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
++ " ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
   
 
 function sync() {
     // console.log(adminTable);
-    db.execute(adminTable);
+    db.execute(adminTable).then(()=>{
+        
+        // console.log(police_table);
+        return db.execute(police_table);
+    }).then(()=>{
+        // console.log(crime_table);
+        return db.execute(crime_table);
+        
+    }).then(()=>{
+        // console.log(criminal_table);
+        return db.execute(criminal_table);
+        
+    }).then(()=>{
+        // console.log(all_crime_types_table);
+        return db.execute(all_crime_types_table);    
+        
+    }).then(()=>{
+        // console.log(crime_to_crime_type_table);
+        return db.execute(crime_to_crime_type_table);    
+        
+    }).then(()=>{
+        
+        // console.log(crime_criminal_table);
+        return db.execute(crime_criminal_table);
+    }).catch(err=>{
+        console.log(err);
+    })
 
-    // console.log(police_table);
-    db.execute(police_table);
 
-    // console.log(crime_table);
-    db.execute(crime_table);
-    
-    // console.log(criminal_table);
-    db.execute(criminal_table);
-
-    // console.log(all_crime_types_table);
-    db.execute(all_crime_types_table);    
-
-    // console.log(crime_to_crime_type_table);
-    db.execute(crime_to_crime_type_table);    
-
-    // console.log(crime_criminal_table);
-    db.execute(crime_criminal_table);
-    
 }
 
 module.exports = { sync };

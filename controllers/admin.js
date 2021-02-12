@@ -2,6 +2,7 @@ const Police = require('../models/police');
 
 const date_convertor = require('../utils/date_convertor');
 const file_handling = require('../utils/file_handling');
+const cloudinary_util = require('../utils/cloudinary');
 
 
 exports.get_admin_dashboard = (req, res, next) => {
@@ -39,17 +40,36 @@ exports.get_add_police_personnel = (req, res, next) => {
 }
 
 exports.post_add_police_personnel = (req, res, next) => {
-    console.log(req.body);
-    const photo_filename = req.files[0].filename;
-    console.log(photo_filename);
-    const personnel = new Police(null, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
-    personnel.addPolice().then(result => {
+    // console.log(req.body);
+    const photo_filepath = req.files[0].path;
+    var photo_filename;
+    console.log(photo_filepath);
+
+    cloudinary_util.uploader.upload(photo_filepath, {
+        folder: "crime-chase-criminal/polices",
+        format: "jpg"
+    }, (err, result) => {
+        // console.log(result);
+        if(err){
+            // console.log(err);
+            throw new Error(err);
+        }
+        var { public_id } = result;
+        photo_filename = public_id;
+        // console.log(photo_filename);
+
+        file_handling.delete_file(photo_filepath);
+    }).then(() => {
+
+        const personnel = new Police(null, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
+        return personnel.addPolice();
+    }).then(result => {
         console.log(result);
         res.redirect('/admin/polices_details');
     }).catch(err => {
         console.log(err);
         res.redirect('/admin/add_police_personnel')
-    })
+    });
 
 }
 
@@ -90,33 +110,74 @@ exports.get_edit_police_personnel_info = (req, res, next) => {
 
 exports.post_edit_police_personnel_info = (req, res, next) => {
     const id = req.params.id;
-    let photo_filename = req.body.old_police_photo;
+    let old_photo_filename = req.body.old_police_photo;
+    let photo_filename = "";
 
-    if (req.files.length>0) {
-        file_handling.delete_file('public/images/polices/' + photo_filename);
-        photo_filename = req.files[0].filename;
+    if (req.files.length > 0) {
+
+        photo_filepath = req.files[0].path;
+
+        cloudinary_util.uploader.upload(photo_filepath, {
+            folder: "crime-chase-criminal/polices",
+            format: "jpg"
+        }, (err, result) => {
+            // console.log(result);
+            if (err) {
+                throw new Error(err);
+            }
+            var { public_id } = result;
+            photo_filename = public_id;
+
+            file_handling.delete_file(photo_filepath);
+        }).then(() => {
+            const personnel = new Police(id, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
+            return personnel.updatePersonnelInfo()
+        }).then(result => {
+            // console.log(result);
+
+            res.redirect('/admin/polices_details');
+            return cloudinary_util.uploader.destroy(old_photo_filename, { invalidate: true }, (err, result) => {
+
+                // console.log(result);
+            });
+        }).catch(err => {
+            console.log(err);
+            
+        })
+
+
+    }
+    else {
+
+
+        photo_filename = old_photo_filename;
+
+
+        const personnel = new Police(id, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
+        return personnel.updatePersonnelInfo().then(result => {
+            // console.log(result);
+
+            res.redirect('/admin/polices_details');
+        }).catch(err => {
+            console.log(err);
+            res.redirect('/admin/polices_details');
+        })
     }
 
-    const personnel = new Police(id, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
-    personnel.updatePersonnelInfo().then(result => {
-        // console.log(result);
-
-        res.redirect('/admin/polices_details');
-    }).catch(err => {
-        console.log(err);
-        res.redirect('/admin/polices_details');
-    })
 }
 
 exports.delete_police_personnel_by_id = (req, res, next) => {
     const id = req.params.id;
-    Police.getPersonnelById(id).then(([personnel,others])=>{
-        const photo_filename=personnel[0].photo_filename;
-        file_handling.delete_file('public/images/polices/' + photo_filename);
+    Police.getPersonnelById(id).then(([personnel, others]) => {
+        const photo_filename = personnel[0].photo_filename;
+        cloudinary_util.uploader.destroy(photo_filename, { invalidate: true }, (err, result) => {
+
+            // console.log(result);
+        });
         return Police.deletePersonnelById(id);
     }).then(result => {
         // console.log(result);
-        res.redirect('/admin/polices_details');
+        res.redirect('/admin/polices_details'); 
     }).catch(err => {
         console.log(err);
         res.redirect('/admin/polices_details');

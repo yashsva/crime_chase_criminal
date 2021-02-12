@@ -30,15 +30,15 @@
         <span class="firstname"><%=name%>, </span>
         <%})%>
       </div>
-      <div class="row">
-        <% if(criminals.length > 0) { %>
+      <% if(criminals.length > 0) { %>
+        <div class="row">
 
         <b>Criminals:</b>
         <div>
           <% criminals.forEach(c =>{ %>
           <div class="criminals_list_item">
             <img
-              src="/images/criminals/<%=c.photo_filename%>"
+              src="https://res.cloudinary.com/dkxhnyynn/image/upload/v1610476615/<%=c.photo_filename%>"
               alt="criminal photo"
             />
             <div>
@@ -60,8 +60,8 @@
           </div>
           <% }) %>
         </div>
-        <% } %>
       </div>
+        <% } %>
       <div class="row">
         <b>Description:</b>
         <span class="description"><%=crime.description%></span>

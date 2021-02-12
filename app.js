@@ -6,6 +6,7 @@ const path = require('path');
 const multer = require('multer');
 const session = require('express-session');
 const MySQLStore=require('express-mysql-session')(session);
+const fs = require('fs');
 
 
 const db = require('./utils/database');
@@ -14,6 +15,7 @@ const errorController = require('./controllers/error');
 
 const app = express();
 
+require('dotenv').config();
 
 
 //photo file storage 
@@ -42,6 +44,8 @@ const imageFileFilter = (req, file, callback) => {
     }
 }
 
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+
 const sessionStore=new MySQLStore({createDatabaseTable:true},db);
 
 app.set('view engine', 'ejs');
@@ -50,7 +54,7 @@ app.set('views', 'views');
 sync_db.sync();
 
 app.use(compression());     //compress assets while sending response
-app.use(morgan('dev'));     //logging requests
+app.use(morgan('combined',{ stream:accessLogStream}));     //logging requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: photo_storage, fileFilter: imageFileFilter }).any());
 app.use(express.static(path.join(__dirname, 'public')))       //for using static file
@@ -107,7 +111,7 @@ app.use(errorController.get_error_404);
 // })
 
 
-const port = 3100;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log('Listening on ' + port);
 });
