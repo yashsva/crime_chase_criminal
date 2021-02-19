@@ -14,6 +14,7 @@ const errorController = require('./controllers/error');
 
 const app = express();
 
+require('dotenv').config();
 
 
 //photo file storage 
@@ -84,12 +85,7 @@ app.get('/favicon.ico', (req, res, next) => {
     res.send('No icon present');
 });
 
-app.get('/about_us', (req, res, next) => {
-    res.render('about_us', {
-        page_title: "About us",
-        path: '/about_us'
-    });
-});
+
 app.get('/', (req, res, next) => {
     res.render('home', {
         page_title: "Home",
@@ -107,7 +103,7 @@ app.use(errorController.get_error_404);
 // })
 
 
-const port = 3100;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log('Listening on ' + port);
 });

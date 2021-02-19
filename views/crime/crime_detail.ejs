@@ -30,8 +30,8 @@
         <span class="firstname"><%=name%>, </span>
         <%})%>
       </div>
-      <div class="row">
-        <% if(criminals.length > 0) { %>
+      <% if(criminals.length > 0) { %>
+        <div class="row">
 
         <b>Criminals:</b>
         <div>
@@ -60,8 +60,8 @@
           </div>
           <% }) %>
         </div>
-        <% } %>
       </div>
+      <% } %>
       <div class="row">
         <b>Description:</b>
         <span class="description"><%=crime.description%></span>
