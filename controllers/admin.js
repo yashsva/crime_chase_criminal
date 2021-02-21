@@ -1,4 +1,5 @@
 const Police = require('../models/police');
+const { validationResult } = require('express-validator/check');
 
 const date_convertor = require('../utils/date_convertor');
 const file_handling = require('../utils/file_handling');
@@ -39,10 +40,27 @@ exports.get_add_police_personnel = (req, res, next) => {
 }
 
 exports.post_add_police_personnel = (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     const photo_filename = req.files[0].filename;
-    console.log(photo_filename);
+    // console.log(photo_filename);
+
+    const errors = validationResult(req);
+
     const personnel = new Police(null, req.body.name, req.body.email, req.body.department, req.body.phone, req.body.password, req.body.dob, photo_filename, req.body.gender);
+
+    if (!errors.isEmpty()) {
+        if (req.files[0]) {
+            file_handling.delete_file(req.files[0].path);
+        }
+        return res.render('police/add_police_personnel', {
+            page_title: 'Add Police',
+            path: 'admin/add_police_personnel',
+            personnel: personnel,
+            isEditing: true,
+            error_msg: 'Invalid Details',
+        });
+    }
+
     personnel.addPolice().then(result => {
         console.log(result);
         res.redirect('/admin/polices_details');
@@ -92,7 +110,7 @@ exports.post_edit_police_personnel_info = (req, res, next) => {
     const id = req.params.id;
     let photo_filename = req.body.old_police_photo;
 
-    if (req.files.length>0) {
+    if (req.files.length > 0) {
         file_handling.delete_file('public/images/polices/' + photo_filename);
         photo_filename = req.files[0].filename;
     }
@@ -110,8 +128,8 @@ exports.post_edit_police_personnel_info = (req, res, next) => {
 
 exports.delete_police_personnel_by_id = (req, res, next) => {
     const id = req.params.id;
-    Police.getPersonnelById(id).then(([personnel,others])=>{
-        const photo_filename=personnel[0].photo_filename;
+    Police.getPersonnelById(id).then(([personnel, others]) => {
+        const photo_filename = personnel[0].photo_filename;
         file_handling.delete_file('public/images/polices/' + photo_filename);
         return Police.deletePersonnelById(id);
     }).then(result => {

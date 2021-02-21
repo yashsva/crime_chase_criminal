@@ -1,4 +1,5 @@
 const express = require('express');
+const { check, body } = require('express-validator/check');
 
 const router = express.Router();
 
@@ -14,7 +15,13 @@ router.get('/polices_details', verifyAuth, verifyAdmin, adminController.get_poli
 
 router.get('/add_police_personnel', verifyAuth, verifyAdmin, adminController.get_add_police_personnel);
 
-router.post('/add_police_personnel', verifyAuth, verifyAdmin, adminController.post_add_police_personnel);
+router.post('/add_police_personnel', verifyAuth, verifyAdmin, [
+    body('email')
+        .isEmail()
+        .normalizeEmail(),
+    body('password', 'Password has to be valid.')
+        .trim()
+], adminController.post_add_police_personnel);
 
 router.get('/police_personnel_info/:id', verifyAuth, verifyAdmin, adminController.get_police_personnel_info_by_id);
 
