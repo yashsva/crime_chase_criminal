@@ -19,7 +19,7 @@ exports.get_polices_details = (req, res, next) => {
         .then(([data, fieldData]) => {
             // console.log(data);
             res.render('police/polices_details', {
-                page_title: 'Polices',
+                page_title: 'Police',
                 path: '/admin/polices-details',
                 polices: data
             })
