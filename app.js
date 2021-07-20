@@ -54,7 +54,7 @@ app.set('views', 'views');
 sync_db.sync();
 
 app.use(compression());     //compress assets while sending response
-app.use(morgan('combined',{ stream:accessLogStream}));     //logging requests
+// app.use(morgan('combined',{ stream:accessLogStream}));     //logging requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: photo_storage, fileFilter: imageFileFilter }).any());
 app.use(express.static(path.join(__dirname, 'public')))       //for using static file
