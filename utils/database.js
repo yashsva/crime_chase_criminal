@@ -6,7 +6,7 @@ const path = require('path');
 //To get API keys from .env files (Using process.env.<variable_name> )
 require('dotenv').config();
 
-const ssl_cert=fs.readFileSync(path.join(__dirname,"..","BaltimoreCyberTrustRoot.crt.pem"));
+const ssl_cert=fs.readFileSync(path.join(__dirname,"..","DigiCertGlobalRootCA.crt.pem"));
 
 
 const pool=mysql.createPool({
